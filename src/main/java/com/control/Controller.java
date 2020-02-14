@@ -1,11 +1,16 @@
 package com.control;
+
 import com.model.Model;
 import com.view.View;
 import java.util.Scanner;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Controller {
     private Model model;
     private View view;
+    private Locale ukr = new Locale("uk");
+    private ResourceBundle rb = ResourceBundle.getBundle("text",ukr);
 
     public Controller(){
         this.model = new Model();
@@ -13,20 +18,20 @@ public class Controller {
     }
     // The Utility methods
     public String inputFamilyString(Scanner sc) {
-        view.printMessage(View.INPUT_FAMILY_NAME);
+        view.printMessage(rb.getString("str1"));
         String input = sc.next();
         while( !(input.matches(View.FAMILY_NAME_REGEX))) {
-            view.printMessage(View.WRONG_INPUT);
+            view.printMessage(rb.getString("str3"));
             input = sc.next();
         }
         return input;
     }
 
     public String inputLogInString(Scanner sc) {
-        view.printMessage(View.INPUT_LOGIN);
+        view.printMessage(rb.getString("str2"));
         String input = sc.next();
         while( ! (input.matches(view.LOGIN_REGEX))) {
-            view.printMessage(View.WRONG_INPUT);
+            view.printMessage(rb.getString("str2"));
             input = sc.next();
         }
         return input;
